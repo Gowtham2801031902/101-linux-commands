@@ -3,7 +3,7 @@ CLI entry point for the 101 Linux Commands application.
 """
 
 from typing import List
-
+import sys
 import click
 import typer
 from typer.main import TyperGroup
@@ -36,6 +36,12 @@ app.add_typer(version.app, name="version")
 app.command()(show.show)
 app.add_typer(search.app, name="search")
 app.command()(build.build)
+def main():
+    if "--version" in sys.argv:
+        print(f"101 Linux Commands CLI Tool version {VERSION}")
+        return
+
+    print("Welcome to 101 Linux Commands!")
 
 
 # Main callback to handle global options
